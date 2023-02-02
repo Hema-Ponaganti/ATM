@@ -12,8 +12,16 @@ class ATMTest {
         List<Integer> expected = Arrays.asList(200, 200, 20, 10, 2, 2);
 
         ATM atm = new ATM();
-        List<Integer> currency = atm.withdraw(434);
+        List<Integer> result = atm.withdraw(434);
 
-        assertEquals(expected, currency);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void  shouldNotReturnMoneyOnInvalidAmount() {
+        ATM atm = new ATM();
+        List<Integer> result = atm.withdraw(0);
+
+        assertEquals(0, result.size());
     }
 }
