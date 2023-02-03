@@ -27,7 +27,7 @@ public class ATM {
             throw new InsufficientResourcesException("The ATM machine has not enough money");
         }
         else {
-            MoneyHandler handler = new HandlerChain().createChain();
+            CashDispenseHandler handler = new HandlerChain().createChain();
             return handler.handleWithdraw(cassette, amount);
         }
     }

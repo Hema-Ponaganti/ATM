@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MoneyHandler {
+public class CashDispenseHandler {
     private final int value;
-    private MoneyHandler next;
+    private CashDispenseHandler next;
 
-    public MoneyHandler(int value) {
+    public CashDispenseHandler(int value) {
         this.value = value;
     }
 
@@ -30,7 +30,7 @@ public class MoneyHandler {
         return result;
     }
 
-    public void setNext(MoneyHandler handler) {
+    public void setNext(CashDispenseHandler handler) {
         this.next = handler;
     }
 }

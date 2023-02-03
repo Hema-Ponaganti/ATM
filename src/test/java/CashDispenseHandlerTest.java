@@ -6,11 +6,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MoneyHandlerTest {
+class CashDispenseHandlerTest {
 
     @Test
     void shouldReturnBillsAndCoinsEquivalentToGivenAmount() {
-        MoneyHandler handler = new MoneyHandler(50);
+        CashDispenseHandler handler = new CashDispenseHandler(50);
         HashMap<Integer, Integer> bills = new HashMap<Integer,Integer>(){{put(50,5);put(20,2);}};
         List<Integer> expected = Arrays.asList(50,50,50,50);
 
@@ -22,8 +22,8 @@ class MoneyHandlerTest {
     @Test
     void shouldInvokeNextHandlerIfAmountIsLessThanValueOfBillOrCoin(){
         HashMap<Integer, Integer> bills = new HashMap<Integer,Integer>(){{put(50,5);put(20,2);}};
-        MoneyHandler handler = new MoneyHandler(50);
-        handler.setNext(new MoneyHandler(20));
+        CashDispenseHandler handler = new CashDispenseHandler(50);
+        handler.setNext(new CashDispenseHandler(20));
 
         List<Integer> result = handler.handleWithdraw(bills, 90);
 
@@ -35,10 +35,10 @@ class MoneyHandlerTest {
     @Test
     void shouldInvokeNextHandlerIfAvailableNoOfBillOrCoinIsLesserThanNeeded(){
         HashMap<Integer, Integer> bills = new HashMap<Integer,Integer>(){{put(500,1);put(200,2);put(100,6);}};
-        MoneyHandler handler = new MoneyHandler(500);
-        MoneyHandler handler1 = new MoneyHandler(200);
+        CashDispenseHandler handler = new CashDispenseHandler(500);
+        CashDispenseHandler handler1 = new CashDispenseHandler(200);
         handler.setNext(handler1);
-        handler1.setNext(new MoneyHandler(100));
+        handler1.setNext(new CashDispenseHandler(100));
 
         List<Integer> result = handler.handleWithdraw(bills, 1200);
 
