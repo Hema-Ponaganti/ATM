@@ -28,7 +28,7 @@ public class ATM {
         }
         else {
             MoneyHandler handler = new HandlerChain().createChain();
-            return handler.handleWithdraw(amount);
+            return handler.handleWithdraw(cassette, amount);
         }
     }
 }
