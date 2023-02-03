@@ -1,6 +1,7 @@
 import Exceptions.InvalidRequestException;
 import org.junit.jupiter.api.Test;
 
+import javax.naming.InsufficientResourcesException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,5 +24,12 @@ class ATMTest {
         ATM atm = new ATM();
 
         assertThrows(InvalidRequestException.class, () -> atm.withdraw(0));
+    }
+
+    @Test
+    void shouldThrowExceptionWhenATMHasNotEnoughMoney() {
+        ATM atm = new ATM();
+
+        assertThrows(InsufficientResourcesException.class, () -> atm.withdraw(5000));
     }
 }
