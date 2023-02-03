@@ -1,15 +1,14 @@
+import Exceptions.InvalidRequestException;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ATM {
-
-    public List<Integer> withdraw(int amount) {
-        MoneyHandler handler = new HandlerChain().createChain();
-        return handler.handleWithdraw(amount);
+    public List<Integer> withdraw(int amount) throws Exception {
+        if (amount <= 0) {
+            throw new InvalidRequestException("Please enter amount in multiples of 1");
+        } else {
+            MoneyHandler handler = new HandlerChain().createChain();
+            return handler.handleWithdraw(amount);
+        }
     }
-
-
 }
